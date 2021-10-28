@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nueva Etapa de Servicio{% endblock %}
+
+{% block body %}
+    <h1>Crear nueva Etapa de Servicio</h1>
+
+    {{ include('service_stage/_form.html.twig') }}
+
+    <a href="{{ path('service_stage_index') }}">volver a la lista</a>
+{% endblock %}

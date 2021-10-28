@@ -1,0 +1,55 @@
+<div class="card">
+  <div class="card-body">
+    {{ form_start(form) }}
+    {{ form_widget(form._token) }}
+    {% if app.user.isEmployee %}
+      <div class="row">
+        <div class="col">
+          {{ form_row(form.client) }}
+        </div>
+        <div class="col">
+          {{ form_row(form.due_date) }}
+        </div>
+      </div>
+    {% else %}
+      <div class="row">
+        <div class="col">
+          {{ form_row(form.due_date) }}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="row">
+      <div class="col">
+        {{ form_row(form.service_type) }}
+      </div>
+      <div class="col">
+        {{ form_row(form.service_stage) }}
+      </div>
+    </div>
+    {% if app.request.get('_route') == 'service_edit' and app.user.isEmployee %}
+      <div class="row">
+        <div class="col">
+          {{ form_row(form.is_billable) }}
+        </div>
+        <div class="col">
+          {{ form_row(form.is_served) }}
+        </div>
+      </div>
+    {% endif %}
+    <div class="row">
+      <div class="col">
+        {{ form_row(form.details) }}
+      </div>
+    </div>
+    <button class="btn">{{ button_label|default('Guardar') }}</button>
+    {{
+      form_end(
+        form,
+        {
+          render_rest: false
+        }
+      )
+    }}
+  </div>
+</div>

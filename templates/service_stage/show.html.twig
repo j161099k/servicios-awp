@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etapa de Servicio{% endblock %}
+
+{% block body %}
+    <h1>Etapa de Servicio</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ service_stage.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ service_stage.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('service_stage_index') }}">volver a la lista</a>
+
+    <a href="{{ path('service_stage_edit', {'id': service_stage.id}) }}">editar</a>
+
+    {{ include('service_stage/_delete_form.html.twig') }}
+{% endblock %}

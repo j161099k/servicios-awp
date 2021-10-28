@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Etapa de Servicio{% endblock %}
+
+{% block body %}
+    <h1>Editar Etapa de Servicio</h1>
+
+    {{ include('service_stage/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+    <a href="{{ path('service_stage_index') }}">volver a la lista</a>
+
+    {{ include('service_stage/_delete_form.html.twig') }}
+{% endblock %}

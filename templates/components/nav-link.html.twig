@@ -1,0 +1,5 @@
+{% set classes = [] %}
+
+<li class="nav-item {{ current_path == route ? 'active' : '' }} {{classes|join(' ')}}">
+  <a href="{{ route }}" class="nav-link">{{ label }}</a>
+</li>

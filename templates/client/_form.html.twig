@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-body">
+    {{ form_start(form) }}
+    {{ form_widget(form._token) }}
+    <div class="row">
+      <div class="col-md-6">
+        {{ form_row(form.name) }}
+      </div>
+      <div class="col-md-6">
+        {{ form_row(form.last_name) }}
+      </div>
+      <div class="col">
+        {{ form_row(form.rfc) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        {{ form_row(form.user.email) }}
+      </div>
+      <div class="col-md-6">
+        {{ form_row(form.user.password) }}
+      </div>
+    </div>
+    <button class="btn">{{ button_label|default('Guardar') }}</button>
+    {{
+      form_end(
+        form,
+        {
+          render_rest: false
+        }
+      )
+    }}
+  </div>
+</div>

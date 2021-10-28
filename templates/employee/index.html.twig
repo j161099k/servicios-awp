@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Indice 
+ de Empleados{% endblock %}
+
+{% block body %}
+    <h1>Indice 
+ de Empleados</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Numero de Empleado</th>
+                <th>Creado en</th>
+                <th>Actualizado en</th>
+                <th>acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for employee in employees %}
+            <tr>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.lastName }}</td>
+                <td>{{ employee.employeeNumber }}</td>
+                <td>{{ employee.createdAt ? employee.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ employee.updatedAt ? employee.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('employee_show', {'id': employee.id}) }}">mostrar</a>
+                    <a href="{{ path('employee_edit', {'id': employee.id}) }}">editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('employee_new') }}">Crear nuevo</a>
+{% endblock %}

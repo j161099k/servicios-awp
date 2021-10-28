@@ -1,0 +1,123 @@
+{% set current_path =
+  path(app.request.get('_route'), app.request.get('_route_params'))
+%}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a href="#" class="navbar-brand">Servicios</a>
+  <button class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#main-nav"
+    aria-controls="main-nav"
+    aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="main-nav">
+    <ul class="navbar-nav">
+      {{
+        include(
+          'components/nav-link.html.twig',
+          {
+            label: 'Inicio',
+            route: path('home')
+          }
+        )
+      }}
+
+      {% if app.user %}
+        {% if app.user.isEmployee %}
+          {{
+            include(
+              'components/nav-link.html.twig',
+              {
+                label: 'Clientes',
+                route: path('client_index')
+              }
+            )
+          }}
+
+          {{
+            include(
+              'components/nav-link.html.twig',
+              {
+                label: 'Empleados',
+                route: path('employee_index')
+              }
+            )
+          }}
+
+          {{
+            include(
+              'components/nav-link.html.twig',
+              {
+                label: 'Servicios',
+                route: path('service_index')
+              }
+            )
+          }}
+
+{#           {{
+            include(
+              'components/nav-link.html.twig',
+              {
+                label: 'Tipos de Servicio',
+                route: path('service_type_index')
+              }
+            )
+          }}
+
+          {{
+            include(
+              'components/nav-link.html.twig',
+              {
+                label: 'Etapas de Servicio',
+                route: path('service_stage_index')
+              }
+            )
+          }} #}
+        {% else %}
+          {{
+            include(
+              'components/nav-link.html.twig',
+              {
+                label: 'Servicios',
+                route: path('service_index')
+              }
+            )
+          }}
+        {% endif %}
+
+        {{
+          include(
+            'components/nav-link.html.twig',
+            {
+              label: app.user.userIdentifier,
+              route: '#'
+            }
+          )
+        }}
+
+        {{
+          include(
+            'components/nav-link.html.twig',
+            {
+              label: 'logout',
+              route: path('app_logout')
+            }
+          )
+        }}
+      {% else %}
+        {{
+          include(
+            'components/nav-link.html.twig',
+            {
+              label: 'login',
+              route: path('app_login')
+            }
+          )
+        }}
+      {% endif %}
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Indice de Tipos de Servicio{% endblock %}
+
+{% block body %}
+    <h1>Indice de Tipos de Servicio</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service_type in service_types %}
+            <tr>
+                <td>{{ service_type.id }}</td>
+                <td>{{ service_type.name }}</td>
+                <td>
+                    <a href="{{ path('service_type_show', {'id': service_type.id}) }}">mostrar</a>
+                    <a href="{{ path('service_type_edit', {'id': service_type.id}) }}">editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('service_type_new') }}">Crear nuevo</a>
+{% endblock %}

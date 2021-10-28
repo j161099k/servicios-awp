@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Indice de Usuarios{% endblock %}
+
+{% block body %}
+    <h1>Indice de Usuarios</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Creado en</th>
+                <th>Actualizado en</th>
+                <th>acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|join(',') }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('user_show', {'id': user.id}) }}">mostrar</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_new') }}">Crear nuevo</a>
+{% endblock %}

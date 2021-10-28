@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Indice de Etapas de Servicio{% endblock %}
+
+{% block body %}
+    <h1>Indice de Etapas de Servicio</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service_stage in service_stages %}
+            <tr>
+                <td>{{ service_stage.id }}</td>
+                <td>{{ service_stage.name }}</td>
+                <td>
+                    <a href="{{ path('service_stage_show', {'id': service_stage.id}) }}">mostrar</a>
+                    <a href="{{ path('service_stage_edit', {'id': service_stage.id}) }}">editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('service_stage_new') }}">Crear nuevo</a>
+{% endblock %}

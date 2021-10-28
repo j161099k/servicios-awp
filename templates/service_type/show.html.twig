@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tipo de Servicio{% endblock %}
+
+{% block body %}
+    <h1>Tipo de Servicio</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ service_type.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ service_type.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('service_type_index') }}">volver a la lista</a>
+
+    <a href="{{ path('service_type_edit', {'id': service_type.id}) }}">editar</a>
+
+    {{ include('service_type/_delete_form.html.twig') }}
+{% endblock %}

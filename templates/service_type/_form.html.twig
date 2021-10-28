@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-body">
+    {{ form_start(form) }}
+    {{ form_row(form._token) }}
+    {{ form_row(form.name) }}
+    <button class="btn">{{ button_label|default('Guardar') }}</button>
+    {{
+      form_end(
+        form,
+        {
+          render_rest: false
+        }
+      )
+    }}
+  </div>
+</div>
